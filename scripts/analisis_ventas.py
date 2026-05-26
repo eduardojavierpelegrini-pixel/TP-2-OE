@@ -5,17 +5,44 @@ lineas = archivo.readlines()
 
 archivo.close()
 
-print("Primeros 5 registros:\n")
 
-for linea in lineas[1:6]:
+total_ventas = 0
+cantidad_ventas = 0
+venta_maxima = 0
+venta_minima = float("inf")
+
+
+for linea in lineas[1:]:
 
     datos = linea.strip().split(",")
 
-    id_venta = datos[0]
-    fecha = datos[1]
-    monto = datos[2]
+    monto = int(datos[2])
 
-    print("ID:", id_venta)
-    print("Fecha:", fecha)
-    print("Monto:", monto)
-    print()
+    total_ventas = total_ventas + monto
+
+    cantidad_ventas = cantidad_ventas + 1
+
+
+    if monto > venta_maxima:
+        venta_maxima = monto
+
+
+    if monto < venta_minima:
+        venta_minima = monto
+
+
+promedio_ventas = total_ventas / cantidad_ventas
+
+
+print("ANÁLISIS DE VENTAS")
+print("-------------------")
+
+print("Total de ventas:", total_ventas)
+
+print("Cantidad de ventas:", cantidad_ventas)
+
+print("Promedio de ventas:", round(promedio_ventas, 2))
+
+print("Venta máxima:", venta_maxima)
+
+print("Venta mínima:", venta_minima)
